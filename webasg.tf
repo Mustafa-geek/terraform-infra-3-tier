@@ -16,14 +16,13 @@ resource "aws_launch_template" "swiggy-web-template" {
   name_prefix   = "swiggy-web-template"
   image_id      = "ami-0861f4e788f5069dd"
   instance_type = "t2.micro"
-  key_name      = "3tierproject"
+  key_name      = "devopsbyraham"
   network_interfaces {
     associate_public_ip_address = true
     security_groups             = [aws_security_group.swiggy-ec2-asg-sg.id]
   }
   user_data = base64encode(file("apache.sh"))
   lifecycle {
-    prevent_destroy = true
     ignore_changes  = all
   }
 }
