@@ -1,10 +1,16 @@
-# Create an S3 Bucket
 resource "aws_s3_bucket" "bucketforterrrrrrrrrrraformthreetierproject" {
-  bucket = "swiggy-bucket-terraform-fordemoinfra3tirerrrrfor4pmbatch"
-
-  # Enable versioning
-  versioning {
-    enabled = true
-  }
+  bucket = "bucketforterrrrrrrrrrraformthreetierproject"
 }
 
+resource "aws_s3_bucket_acl" "bucket_acl" {
+  bucket = aws_s3_bucket.bucketforterrrrrrrrrrraformthreetierproject.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_versioning" "bucket_versioning" {
+  bucket = aws_s3_bucket.bucketforterrrrrrrrrrraformthreetierproject.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
